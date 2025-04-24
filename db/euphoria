@@ -1,0 +1,217 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.3
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jul 28, 2022 at 06:52 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `euphoria`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admins`
+--
+
+CREATE TABLE `admins` (
+  `admin_id` int(10) NOT NULL,
+  `admin_name` varchar(255) NOT NULL,
+  `admin_email` varchar(255) NOT NULL,
+  `admin_pass` varchar(255) NOT NULL,
+  `admin_image` text NOT NULL,
+  `admin_contact` varchar(255) NOT NULL,
+  `admin_job` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admins`
+--
+
+INSERT INTO `admins` (`admin_id`, `admin_name`, `admin_email`, `admin_pass`, `admin_image`, `admin_contact`, `admin_job`) VALUES
+(2, 'Abyliana', 'ab@mail.com', 'ab', 'ab.jpeg', '011-11245555', 'Web Developer'),
+(3, 'farah alysa', 'alysa@gmail.com', '9876', 'fr.jpg', '011-2344534', 'Project Manager'),
+(4, 'fatin', 'fatin@email.com', '1234', 'fa.jpeg', '011-3836362', 'Web Developer');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `p_id` int(10) NOT NULL,
+  `ip_add` varchar(255) NOT NULL,
+  `qty` int(10) NOT NULL,
+  `p_price` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`p_id`, `ip_add`, `qty`, `p_price`) VALUES
+(13, '::1', 2, '90'),
+(16, '::1', 2, '529');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customers`
+--
+
+CREATE TABLE `customers` (
+  `customer_id` int(10) NOT NULL,
+  `customer_name` varchar(255) NOT NULL,
+  `customer_email` varchar(255) NOT NULL,
+  `customer_pass` varchar(255) NOT NULL,
+  `customer_contact` varchar(255) NOT NULL,
+  `customer_address` text NOT NULL,
+  `customer_ip` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`customer_id`, `customer_name`, `customer_email`, `customer_pass`, `customer_contact`, `customer_address`, `customer_ip`) VALUES
+(7, 'farah', '29@gmail', 'farah29', '0113923', 'no6 jalan beringin 7', '::1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer_orders`
+--
+
+CREATE TABLE `customer_orders` (
+  `order_id` int(10) NOT NULL,
+  `customer_id` int(10) NOT NULL,
+  `due_amount` int(100) NOT NULL,
+  `qty` int(10) NOT NULL,
+  `order_status` text NOT NULL,
+  `invoice_no` int(100) NOT NULL,
+  `product_id` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `customer_orders`
+--
+
+INSERT INTO `customer_orders` (`order_id`, `customer_id`, `due_amount`, `qty`, `order_status`, `invoice_no`, `product_id`) VALUES
+(17, 2, 100, 2, 'pending', 0, ''),
+(35, 7, 219, 1, 'pending', 0, '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `product_id` int(10) NOT NULL,
+  `p_cat_id` int(10) NOT NULL,
+  `product_title` text NOT NULL,
+  `product_url` text NOT NULL,
+  `product_img1` text NOT NULL,
+  `product_img2` text NOT NULL,
+  `product_price` int(10) NOT NULL,
+  `product_desc` text NOT NULL,
+  `status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`product_id`, `p_cat_id`, `product_title`, `product_url`, `product_img1`, `product_img2`, `product_price`, `product_desc`, `status`) VALUES
+(5, 7, 'Budi Tv Racks', 'product-url-5', 'budi.jpg', 'budi2.jpg', 259, '\r\n\r\n<p>This is a rattan rack </p>\r\n\r\n\r\n', 'product'),
+(8, 4, 'Cadence Queen Bed', 'product-url-8', 'cadence-bed-revised-2020-45.jpg', 'cadence-king-bed-scaled-900x900.jpg', 1, '\r\n\r\n\r\n\r\n\r\n<p>If you are looking for simple elegance, look no further than Cadence. Its blend of style and strength is apparent in every detail. The softly-curved headboard, the distinctive legs, the detailed stitching, and the neutral palette — there is simply no resisting the charm of Cadence..</p>\r\n\r\n\r\n\r\n\r\n', 'product'),
+(9, 5, 'Reclaimed Wood Sunburst Round Mirror', 'product-url-9', 'Sunburst-Round-Mirror-Front-900x900.jpg', 'Sunburst-mirror-rollover-900x900.jpg', 50, '\r\n\r\n\r\n\r\n\r\n<p>Reclaimed Wood Sunburst Round Mirror.</p>\r\n\r\n\r\n\r\n\r\n', 'product'),
+(12, 8, '  Jasper Dining Table', 'ultraboost-21-adidas', 'jasper-dining-table-front-2.jpg', 'DSCF6124-scaled-900x900.jpg', 150, '\r\n\r\nA stunning combination of sleek glass and wood, the sophisticated Jasper exudes a contemporary feel. Perched on top of solid wood legs with alluring walnut finish, the tempered glass tabletop gives the piece the ultimate modern touch. It offers plenty of room and fits in seamlessly in any space.\r\n', 'product'),
+(13, 9, 'Sasha Medium Rattan Cabinet Natural', 'nike-sportswear-essen-col', 'Sasha-Medium-Front-1.jpg', 'Sasha-Medium-Open-.jpg', 90, '\r\nCrafted from natural rattan and rattan webbing weave in Indonesia, the elegant Sasha Rattan Cabinet will find a home in any space. With its two doors that allow easy access, the cabinet offers ample storage. The leather on the handles is the final classy touch that completes the look.\r\n\r\n\r\n\r\n\r\n', 'product'),
+(14, 3, 'Fluffy Sofa Bed Stone Grey', 'demo-product-showcase', 'Fluffy-Sofa-Bed-grey01-900x900.jpg', 'Fluffy-Sofa-Bed-grey04-1-900x900.jpg', 120, '\r\n\r\nA contemporary and minimalist sofa that’s ideal for smaller set-ups as an occasional guest bed. It comes with a sprung foam seat and back, perfect for a comfy medium-firm sit or a relaxing night’s sleep.\r\n\r\n\r\n\r\n\r\n', 'product'),
+(15, 2, 'Oslo White 4 Drawers Chest', 'product-url-10', 'oslo.jpg', 'war.jpg', 799, '\r\nA clean expression that fits right in, in the bedroom or wherever you place it. Oslo White 4 Drawers Chest lets you store your essentials in style and keep the clutter away.', 'product'),
+(16, 6, 'Lovisa Kids Blush Pink Sofa', 'product-url-2', 'Lovisa-Kids-Blush-Pink-Sofa-front-900x900.jpg', '5-2-900x900.jpg', 529, '\r\n\r\nIf you want to choose a lovely and comfortable sofa for your toddler, this one could be the perfect choice. It is made of sturdy wood and breathable fabric so it’s comfortable and provides seat for 2 kids. Thanks to the lightweight design, you can move the sofa from one place to another. Available in Dolphin Grey, Cobalt Blue and Blush Pink.', 'product'),
+(17, 1, 'Filip Grey Bedside Table', 'product-url-7', 'Filip-Grey-Bedside-Table-front-900x900.jpg', 'image-10-900x900.jpg', 219, '\r\n\r\n\r\nComplete your child’s dream bedroom with the Filip collection. The style is timeless, the materials are durable and the details are made with care. Available as White Single Bed, Grey Single Bed, White Bedside Table, Grey Bedside Table, White 4 Drawers Chest and Single Bunk Bed.\r\n', 'product'),
+(18, 0, 'Tri-Color Set Of 3 Bowl With Wooden Tray', 'product-url-4', 'Tri-Color-Set-of-3-Bowl-with-Wooden-Tray-front.jpg', 'Tri-color-set--scaled-900x900.jpg', 50, '\r\nno desc\r\n', 'product'),
+(19, 0, 'Framed Canvas 100x140cm – Sunrise', 'product-url-1', 'Framed-Canvas-100x140cm-Sunrise.jpg', 'Framed-Canvas-100x140cm-Sunrise-rollover.jpg', 339, '\r\nNatural\r\nClassic Painting\r\n100W x 140H cm', 'product');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `admins`
+--
+ALTER TABLE `admins`
+  ADD PRIMARY KEY (`admin_id`);
+
+--
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`p_id`);
+
+--
+-- Indexes for table `customers`
+--
+ALTER TABLE `customers`
+  ADD PRIMARY KEY (`customer_id`);
+
+--
+-- Indexes for table `customer_orders`
+--
+ALTER TABLE `customer_orders`
+  ADD PRIMARY KEY (`order_id`);
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`product_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `admins`
+--
+ALTER TABLE `admins`
+  MODIFY `admin_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `customers`
+--
+ALTER TABLE `customers`
+  MODIFY `customer_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `customer_orders`
+--
+ALTER TABLE `customer_orders`
+  MODIFY `order_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `product_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
