@@ -55,7 +55,7 @@
 	<tr>
 		<td>FARAH ALYSA</td>
 		<td><img src="images/fr.jpg" alt="" height=100 width=100 /></td>
-		<td>Project Manager</td>
+		<td>Project Manager, Slayism</td>
 		<td>011-3287545</td>
 		<td>farah@gmail.com</td>
 	</tr>
